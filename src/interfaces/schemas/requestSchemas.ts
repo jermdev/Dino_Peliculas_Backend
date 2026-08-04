@@ -34,3 +34,16 @@ const DEFAULT_NUM_SHOWS_FOR_RECOMENDATION_QUERY: number = 10;
 export const RecommendationQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(MAX_NUM_SHOWS_FOR_RECOMENDATION_QUERY).default(DEFAULT_NUM_SHOWS_FOR_RECOMENDATION_QUERY),
 });
+
+export const CreateMovieSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  urlHorizontalPoster: z.string().min(1),
+  urlVerticalPoster: z.string().min(1),
+  urlMedia: z.string().min(1),
+  categories: z.array(z.string().min(1)).nonempty(),
+  originalNumIdFromOriginalSource: z.coerce.number().int().nonnegative(),
+  originalAlphIdFromOriginalSource: z.string().min(1),
+  subtitles: z.string().optional(),
+})
