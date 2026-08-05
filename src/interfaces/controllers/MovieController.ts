@@ -9,7 +9,6 @@ export class MovieController {
     const payload = CreateMovieSchema.parse(request.body)
 
     const moviePayload = {
-      id: payload.id,
       title: payload.title,
       description: payload.description,
       urlHorizontalPoster: new PathUrl(payload.urlHorizontalPoster),

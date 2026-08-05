@@ -7,7 +7,7 @@ datasource db {
 }
 
 model Movie {
-  id                            String   @id
+  id                            String   @id @db.Text
   title                         String
   description                   String
   originalNumIdFromOriginalSource Int
