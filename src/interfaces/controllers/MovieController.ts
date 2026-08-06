@@ -1,6 +1,6 @@
-import { CreateMovieService } from '@/application/services/CreateMovieService.ts'
-import { CreateMovieSchema } from '@/interfaces/schemas/requestSchemas.ts'
-import { PathUrl } from '@/domain/value-objects/PathUrl.ts'
+import { CreateMovieService } from '@/application/services/CreateMovieService.js'
+import { CreateMovieSchema } from '@/interfaces/schemas/requestSchemas.js'
+import { PathUrl } from '@/domain/value-objects/PathUrl.js'
 
 export class MovieController {
   constructor(private readonly createMovieService: CreateMovieService) {}

@@ -1,5 +1,5 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
-import { MovieController } from '@/interfaces/controllers/MovieController.ts'
+import { MovieController } from '@/interfaces/controllers/MovieController.js'
 
 export function registerMovieRoutes(fastify: FastifyInstance, controller: MovieController) {
   fastify.post('/api/movies', async (request: FastifyRequest, reply: FastifyReply) => {

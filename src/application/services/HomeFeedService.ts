@@ -1,10 +1,10 @@
-import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.ts'
-import { RecommendationService } from '@/application/services/RecomendationService.ts'
-import { RankingService } from '@/application/services/RankingService.ts'
-import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.ts'
-import { CatalogoFilter } from '@/domain/value-objects/CatalogoFilter.ts'
-import type { HomeFeedSection } from '@/domain/types/HomeFeedSection.ts'
-import type { HomeFeedOptions } from '@/domain/types/HomeFeedOptions.ts'
+import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.js'
+import { RecommendationService } from '@/application/services/RecomendationService.js'
+import { RankingService } from '@/application/services/RankingService.js'
+import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.js'
+import { CatalogoFilter } from '@/domain/value-objects/CatalogoFilter.js'
+import type { HomeFeedSection } from '@/domain/types/HomeFeedSection.js'
+import type { HomeFeedOptions } from '@/domain/types/HomeFeedOptions.js'
 
 export class HomeFeedService {
   constructor(

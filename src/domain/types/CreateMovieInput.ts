@@ -1,4 +1,4 @@
-import { PathUrl } from '@/domain/value-objects/PathUrl.ts'
+import { PathUrl } from '@/domain/value-objects/PathUrl.js'
 export interface CreateMovieInput {
     id: string;
     title: string;

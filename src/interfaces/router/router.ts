@@ -1,8 +1,8 @@
 import type { FastifyInstance } from 'fastify'
-import { HomeController } from '@/interfaces/controllers/HomeController.ts'
-import { MovieController } from '@/interfaces/controllers/MovieController.ts'
-import { registerHomeRoutes } from '@/interfaces/router/homeRoutes.ts'
-import { registerMovieRoutes } from '@/interfaces/router/movieRoutes.ts'
+import { HomeController } from '@/interfaces/controllers/HomeController.js'
+import { MovieController } from '@/interfaces/controllers/MovieController.js'
+import { registerHomeRoutes } from '@/interfaces/router/homeRoutes.js'
+import { registerMovieRoutes } from '@/interfaces/router/movieRoutes.js'
 
 export function createRouter(fastify: FastifyInstance, controllers: {
   home: HomeController

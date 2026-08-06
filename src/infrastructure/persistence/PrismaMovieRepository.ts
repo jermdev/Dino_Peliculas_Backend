@@ -1,8 +1,8 @@
 import { Prisma } from '@prisma/client'
-import { Movie } from '@/domain/entities/Movie.ts'
-import type { MovieRepository } from '@/domain/ports/MovieRepository.ts'
-import { PathUrl } from '@/domain/value-objects/PathUrl.ts'
-import { prisma } from '@/lib/prisma.ts'
+import { Movie } from '@/domain/entities/Movie.js'
+import type { MovieRepository } from '@/domain/ports/MovieRepository.js'
+import { PathUrl } from '@/domain/value-objects/PathUrl.js'
+import { prisma } from '@/lib/prisma.js'
 
 type MovieWithCategories = Prisma.MovieGetPayload<{
   include: { categories: true }

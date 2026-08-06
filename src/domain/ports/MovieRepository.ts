@@ -1,5 +1,5 @@
-import type { Movie } from '@/domain/entities/Movie.ts'
-import type { ContentRepository } from '@/domain/ports/ContentRepository.ts'
+import type { Movie } from '@/domain/entities/Movie.js'
+import type { ContentRepository } from '@/domain/ports/ContentRepository.js'
 
 export interface MovieRepository extends ContentRepository {
   save(movie: Movie): Promise<void>            // crea o actualiza

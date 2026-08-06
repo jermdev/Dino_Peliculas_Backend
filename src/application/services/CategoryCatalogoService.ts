@@ -1,6 +1,6 @@
-import { type CreateCategoryCatalogo } from "@/domain/ports/CreateCategoryCatalogo.ts";
-import { type CategoryCatalogoRepository } from "@/domain/ports/CategoryCatalogoRepository.ts";
-import { CategoryCatalogo } from "@/domain/entities/CategoryCatalogo.ts";
+import { type CreateCategoryCatalogo } from "@/domain/ports/CreateCategoryCatalogo.js";
+import { type CategoryCatalogoRepository } from "@/domain/ports/CategoryCatalogoRepository.js";
+import { CategoryCatalogo } from "@/domain/entities/CategoryCatalogo.js";
 
 export class CategoryCatalogoService implements CreateCategoryCatalogo {
     

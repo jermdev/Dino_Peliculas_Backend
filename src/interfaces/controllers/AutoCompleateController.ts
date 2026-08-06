@@ -1,6 +1,6 @@
 // src/interfaces/controllers/AutocompleteController.ts
-import { SearchAutocompleteService } from '@/application/services/SearchAutocompleteService.ts';
-import { AutocompleteQuerySchema } from '@/interfaces/schemas/requestSchemas.ts';
+import { SearchAutocompleteService } from '@/application/services/SearchAutocompleteService.js';
+import { AutocompleteQuerySchema } from '@/interfaces/schemas/requestSchemas.js';
 
 export class AutocompleteController {
   constructor(private autocompleteService: SearchAutocompleteService) {}

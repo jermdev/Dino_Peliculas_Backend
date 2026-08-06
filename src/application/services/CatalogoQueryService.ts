@@ -1,8 +1,8 @@
-import type { ContentRepository } from '@/domain/ports/ContentRepository.ts'
-import { CatalogoFilter } from '@/domain/value-objects/CatalogoFilter.ts'
-import type { CatalogoResult } from '@/domain/types/CatalogoResult.ts'
-import { RankingService } from '@/application/services/RankingService.ts'
-import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.ts'
+import type { ContentRepository } from '@/domain/ports/ContentRepository.js'
+import { CatalogoFilter } from '@/domain/value-objects/CatalogoFilter.js'
+import type { CatalogoResult } from '@/domain/types/CatalogoResult.js'
+import { RankingService } from '@/application/services/RankingService.js'
+import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.js'
 
 export class CatalogoQueryService {
   constructor(

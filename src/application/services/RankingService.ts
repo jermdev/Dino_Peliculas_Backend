@@ -1,4 +1,4 @@
-import type { Show } from '@/domain/entities/Show.ts'
+import type { Show } from '@/domain/entities/Show.js'
 
 export class RankingService {
   sortByCategoryCount(items: Show[]): Show[] {

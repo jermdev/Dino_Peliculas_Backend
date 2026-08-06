@@ -1,7 +1,7 @@
 // src/interfaces/controllers/ContentController.ts
-import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.ts';
-import { RecommendationService } from '@/application/services/RecomendationService.ts';
-import { ContentParamsSchema, RecommendationParamsSchema, RecommendationQuerySchema } from '@/interfaces/schemas/requestSchemas.ts';
+import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.js';
+import { RecommendationService } from '@/application/services/RecomendationService.js';
+import { ContentParamsSchema, RecommendationParamsSchema, RecommendationQuerySchema } from '@/interfaces/schemas/requestSchemas.js';
 
 export class ContentController {
   constructor(

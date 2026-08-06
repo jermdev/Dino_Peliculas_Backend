@@ -1,6 +1,6 @@
-import { Show } from '@/domain/entities/Show.ts'
-import type { MovieReproductionStructure } from '@/domain/types/MovieReproductionStructure.ts'
-import type {CreateMovieInput} from '@/domain/types/CreateMovieInput.ts'
+import { Show } from '@/domain/entities/Show.js'
+import type { MovieReproductionStructure } from '@/domain/types/MovieReproductionStructure.js'
+import type {CreateMovieInput} from '@/domain/types/CreateMovieInput.js'
 export class Movie extends Show{
 
     private _urlMedia: string;

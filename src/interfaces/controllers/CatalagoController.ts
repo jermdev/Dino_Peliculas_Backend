@@ -1,6 +1,6 @@
-import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.ts';
-import { CatalogoFilter } from '@/domain/value-objects/CatalogoFilter.ts';
-import { CatalogQuerySchema } from '@/interfaces/schemas/requestSchemas.ts';
+import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.js';
+import { CatalogoFilter } from '@/domain/value-objects/CatalogoFilter.js';
+import { CatalogQuerySchema } from '@/interfaces/schemas/requestSchemas.js';
 
 export class CatalogController {
   constructor(private catalogService: CatalogoQueryService) {}

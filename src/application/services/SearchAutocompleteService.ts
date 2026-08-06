@@ -1,5 +1,5 @@
-import type { ContentRepository } from '@/domain/ports/ContentRepository.ts'
-import type { SearchSuggestion } from '@/domain/types/SearchSuggestion.ts'
+import type { ContentRepository } from '@/domain/ports/ContentRepository.js'
+import type { SearchSuggestion } from '@/domain/types/SearchSuggestion.js'
 
 export class SearchAutocompleteService {
   constructor(private readonly contentRepository: ContentRepository) {}

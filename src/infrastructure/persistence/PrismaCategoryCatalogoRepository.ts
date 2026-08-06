@@ -1,6 +1,6 @@
-import { CategoryCatalogo } from '@/domain/entities/CategoryCatalogo.ts'
-import type { CategoryCatalogoRepository } from '@/domain/ports/CategoryCatalogoRepository.ts'
-import { prisma } from '@/lib/prisma.ts'
+import { CategoryCatalogo } from '@/domain/entities/CategoryCatalogo.js'
+import type { CategoryCatalogoRepository } from '@/domain/ports/CategoryCatalogoRepository.js'
+import { prisma } from '@/lib/prisma.js'
 
 export class PrismaCategoryCatalogoRepository implements CategoryCatalogoRepository {
   async saveCategoryCatalogo(categoryCatalogo: CategoryCatalogo): Promise<void> {

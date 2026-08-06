@@ -1,6 +1,6 @@
-import type { ContentRepository } from '@/domain/ports/ContentRepository.ts'
-import { RankingService } from '@/application/services/RankingService.ts'
-import type { Show } from '@/domain/entities/Show.ts'
+import type { ContentRepository } from '@/domain/ports/ContentRepository.js'
+import { RankingService } from '@/application/services/RankingService.js'
+import type { Show } from '@/domain/entities/Show.js'
 
 export class RecommendationService {
   constructor(

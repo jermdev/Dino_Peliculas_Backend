@@ -1,4 +1,4 @@
-import { CategoryCatalogo } from "@/domain/entities/CategoryCatalogo.ts";
+import { CategoryCatalogo } from "@/domain/entities/CategoryCatalogo.js";
 
 export interface CreateCategoryCatalogo {
     ascreateCategoryCatalogo(Categories: string[]): Promise<boolean>

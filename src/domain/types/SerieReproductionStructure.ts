@@ -1,4 +1,4 @@
-import type {ReproductionStructure} from '@/domain/types/ReproductionStructure.ts'
+import type {ReproductionStructure} from '@/domain/types/ReproductionStructure.js'
 
 interface Episode {
     titleEpisode: string,

@@ -1,9 +1,9 @@
-import { Movie } from '@/domain/entities/Movie.ts'
-import type { CreateMoviePort } from '@/domain/ports/CreateMoviePort.ts'
-import type { CreateMovieCommand } from '@/application/types/CreateMovieCommand.ts'
-import type { MovieRepository } from '@/domain/ports/MovieRepository.ts'
-import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.ts'
-import { generateId } from '@/application/helpers/generateId.ts'
+import { Movie } from '@/domain/entities/Movie.js'
+import type { CreateMoviePort } from '@/domain/ports/CreateMoviePort.js'
+import type { CreateMovieCommand } from '@/application/types/CreateMovieCommand.js'
+import type { MovieRepository } from '@/domain/ports/MovieRepository.js'
+import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.js'
+import { generateId } from '@/application/helpers/generateId.js'
 
 const MAX_ID_GENERATION_ATTEMPTS = 10
 
