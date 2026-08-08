@@ -3,6 +3,7 @@ import type { CreateMoviePort } from '@/domain/ports/CreateMoviePort.js'
 import type { CreateMovieCommand } from '@/application/types/CreateMovieCommand.js'
 import type { MovieRepository } from '@/domain/ports/MovieRepository.js'
 import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.js'
+import type { CreateMovieResult } from '@/application/types/create-movie.result.js'
 import { generateId } from '@/application/helpers/generateId.js'
 
 const MAX_ID_GENERATION_ATTEMPTS = 10
@@ -10,11 +11,21 @@ const MAX_ID_GENERATION_ATTEMPTS = 10
 export class CreateMovieService implements CreateMoviePort {
   constructor(private readonly movieRepository: MovieRepository, private readonly categoryCatalogoService: CategoryCatalogoService) {}
 
-  async execute(input: CreateMovieCommand): Promise<Movie> {
-    let lastError: unknown
+  async execute(input: CreateMovieCommand): Promise<CreateMovieResult> {
+    
+    const existingByOriginalSourceId = await this.movieRepository.findByOriginalSourceId(input.originalNumIdFromOriginalSource)
+    if (existingByOriginalSourceId) {
+      return {
+        success: false,
+        reason: 'MOVIE_ALREADY_REGISTERED',
+        originalNumIdFromOriginalSource: input.originalNumIdFromOriginalSource,
+      }
+    }
 
+    let lastError: unknown;
+    
     for (let attempt = 1; attempt <= MAX_ID_GENERATION_ATTEMPTS; attempt += 1) {
-      const generatedId = generateId()
+    const generatedId = generateId()
 
       const existing = await this.movieRepository.findById(generatedId)
       if (existing) {
@@ -38,7 +49,7 @@ export class CreateMovieService implements CreateMoviePort {
       try {
         await this.movieRepository.save(movie)
         await this.ensureCategoriesExist(input.categories)
-        return movie
+        return { success: true, movie }
       } catch (error: unknown) {
         lastError = error
         if (attempt < MAX_ID_GENERATION_ATTEMPTS) {
