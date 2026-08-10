@@ -1,13 +1,18 @@
 import Fastify from 'fastify'
 import 'dotenv/config'
 import { createRouter } from '@/interfaces/router/router.js'
+
 import { HomeController } from '@/interfaces/controllers/HomeController.js'
 import { MovieController } from '@/interfaces/controllers/MovieController.js'
+import { AutocompleteController } from './interfaces/controllers/AutoCompleateController.js'
+
 import { CreateMovieService } from '@/application/services/CreateMovieService.js'
 import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.js'
 import { HomeFeedService } from '@/application/services/HomeFeedService.js'
 import { RecommendationService } from '@/application/services/RecomendationService.js'
+import { SearchAutocompleteService } from '@/application/services/SearchAutocompleteService.js'
 import { CategoryCatalogoService } from '@/application/services/CategoryCatalogoService.js'
+
 import { PrismaMovieRepository } from '@/infrastructure/persistence/PrismaMovieRepository.js'
 import { PrismaCategoryCatalogoRepository } from '@/infrastructure/persistence/PrismaCategoryCatalogoRepository.js'
 
@@ -21,6 +26,7 @@ const categoryCatalogoService = new CategoryCatalogoService(categoryCatalogoRepo
 const createMovieService = new CreateMovieService(movieRepository, categoryCatalogoService)
 const catalogService = new CatalogoQueryService(movieRepository, categoryCatalogoService)
 const recommendationService = new RecommendationService(movieRepository)
+const searchAutocompleteService = new SearchAutocompleteService(movieRepository)
 const homeFeedService = new HomeFeedService(
   catalogService,
   recommendationService,
@@ -28,10 +34,12 @@ const homeFeedService = new HomeFeedService(
 )
 const homeController = new HomeController(homeFeedService)
 const movieController = new MovieController(createMovieService)
+const autocompleteController = new AutocompleteController(searchAutocompleteService)
 
 createRouter(fastify, {
   home: homeController,
   movie: movieController,
+  autocomplete:autocompleteController
 })
 
 const port = parseInt(process.env.PORT ?? '3000', 10)
