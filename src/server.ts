@@ -3,8 +3,9 @@ import 'dotenv/config'
 import { createRouter } from '@/interfaces/router/router.js'
 
 import { HomeController } from '@/interfaces/controllers/HomeController.js'
-import { MovieController } from '@/interfaces/controllers/MovieController.js'
+import { MovieController,  } from '@/interfaces/controllers/MovieController.js'
 import { AutocompleteController } from './interfaces/controllers/AutoCompleateController.js'
+import { ContentController } from '@/interfaces/controllers/ContentController.js'
 
 import { CreateMovieService } from '@/application/services/CreateMovieService.js'
 import { CatalogoQueryService } from '@/application/services/CatalogoQueryService.js'
@@ -35,11 +36,13 @@ const homeFeedService = new HomeFeedService(
 const homeController = new HomeController(homeFeedService)
 const movieController = new MovieController(createMovieService)
 const autocompleteController = new AutocompleteController(searchAutocompleteService)
+const contentController = new ContentController(catalogService, recommendationService)
 
 createRouter(fastify, {
   home: homeController,
   movie: movieController,
-  autocomplete:autocompleteController
+  autocomplete:autocompleteController,
+  content: contentController
 })
 
 const port = parseInt(process.env.PORT ?? '3000', 10)

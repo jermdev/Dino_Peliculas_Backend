@@ -21,12 +21,12 @@ export const AutocompleteQuerySchema = z.object({
 
 // Para GET /api/content/:id
 export const ContentParamsSchema = z.object({
-  id: z.string().uuid(), // Si usas UUID
+  id: z.string().regex(/^[A-Za-z0-9_-]+$/), // Si usas UUID
 })
 
 // Para GET /api/content/:id/recommendations
 export const RecommendationParamsSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string().regex(/^[A-Za-z0-9_-]+$/), // Si usas UUID
 });
 
 const MAX_NUM_SHOWS_FOR_RECOMENDATION_QUERY: number = 30;
