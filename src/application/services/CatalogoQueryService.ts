@@ -14,7 +14,7 @@ export class CatalogoQueryService {
   async buscar(filter: CatalogoFilter): Promise<CatalogoResult> {
     const rawItems = filter.query
       ? await this.contentRepository.searchByTitle(filter.query, filter.limit * filter.page)
-      : await this.contentRepository.findAll({ limit: 1000, offset: 0 })
+      : await this.contentRepository.findAll({ limit: 70, offset: 0 })
 
     const filtered = rawItems.filter((content) => {
       if (!filter.categories || filter.categories.length === 0) {
