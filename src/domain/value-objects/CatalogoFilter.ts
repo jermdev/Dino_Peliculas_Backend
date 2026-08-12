@@ -71,7 +71,7 @@ export class CatalogoFilter {
 
   private static validateLimit(limit?: number): number {
     const DEFAULT_LIMIT = 20
-    const MAX_LIMIT = 50
+    const MAX_LIMIT = 200
 
     if (limit === undefined) {
       return DEFAULT_LIMIT

@@ -30,7 +30,7 @@ export class HomeFeedService {
     const categorySections = await Promise.all(
       sectionTitles.map(async (category) => {
         const result = await this.catalogService.buscarPreview(
-          new CatalogoFilter({ category: [category], page: 1, limit: 8 })
+          new CatalogoFilter({ category: [category], page: 1, limit: 60 })
         )
         return {
           title: category,
