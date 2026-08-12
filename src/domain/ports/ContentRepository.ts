@@ -1,7 +1,9 @@
+import type { OverViewMovie } from '@/application/types/overView-Movie.js';
 import type { Show } from '@/domain/entities/Show.js'
 
 export interface ContentRepository {
   findById(id: string): Promise<Show | null>
   findAll(opts?: { limit?: number; offset?: number }): Promise<Show[]>
   searchByTitle(query: string, limit: number): Promise<Show[]>
+  findOverViewMovies(opts?: { limit?: number; offset?: number }): Promise<OverViewMovie[]>
 }

@@ -3,10 +3,26 @@ import { Movie } from '@/domain/entities/Movie.js'
 import type { MovieRepository } from '@/domain/ports/MovieRepository.js'
 import { PathUrl } from '@/domain/value-objects/PathUrl.js'
 import { prisma } from '@/lib/prisma.js'
+import type { OverViewMovie } from '@/application/types/overView-Movie.js'
 
 type MovieWithCategories = Prisma.MovieGetPayload<{
   include: { categories: true }
 }>
+
+const movieOverviewSelect = {
+  id: true,
+  title: true,
+  urlVerticalPoster: true,
+  urlHorizontalPoster: true,
+  categories: {
+    select: {
+      id: true,
+      name: true,
+    },
+  },
+} satisfies Prisma.MovieSelect
+
+type MovieOverviewRecord = Prisma.MovieGetPayload<{ select: typeof movieOverviewSelect }>
 
 export class PrismaMovieRepository implements MovieRepository {
   async save(movie: Movie): Promise<void> {
@@ -104,6 +120,17 @@ export class PrismaMovieRepository implements MovieRepository {
     return record ? this.toDomain(record) : null
   }
 
+  async findOverViewMovies(opts?: { limit?: number; offset?: number }): Promise<OverViewMovie[]> {
+    const records = await prisma.movie.findMany({
+    select: movieOverviewSelect,
+    take: opts?.limit ?? 100,
+    skip: opts?.offset ?? 0,
+    orderBy: { title: 'asc' },
+  })
+
+  return records.map((record) => this.toOverViewMovie(record))
+  }
+
   private toDomain(record: MovieWithCategories): Movie {
     const input: ConstructorParameters<typeof Movie>[0] = {
       id: record.id,
@@ -122,5 +149,17 @@ export class PrismaMovieRepository implements MovieRepository {
     }
 
     return new Movie(input)
+  }
+
+  private toOverViewMovie(record: MovieOverviewRecord): OverViewMovie {
+
+
+    return {
+      id: record.id,
+      title: record.title,
+      categories: record.categories,
+      urlVerticalPoster: record.urlVerticalPoster ?? '',
+      urlHorizontalPoster: record.urlHorizontalPoster ?? '',
+    }
   }
 }

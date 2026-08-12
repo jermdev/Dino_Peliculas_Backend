@@ -17,7 +17,7 @@ export class HomeFeedService {
   async buildDashboard(options?: HomeFeedOptions): Promise<{ sections: HomeFeedSection[] }> {
     const preferredGenres = options?.preferredGenres ?? []
 
-    const heroSection = await this.catalogService.buscar(new CatalogoFilter({ page: 1, limit: 10 }))
+    const heroSection = await this.catalogService.buscarPreview(new CatalogoFilter({ page: 1, limit: 20 }))
     const recommendedItems =
       preferredGenres.length > 0
         ? await this.recommendationService.paraPerfil(preferredGenres, 10)
@@ -29,7 +29,7 @@ export class HomeFeedService {
 
     const categorySections = await Promise.all(
       sectionTitles.map(async (category) => {
-        const result = await this.catalogService.buscar(
+        const result = await this.catalogService.buscarPreview(
           new CatalogoFilter({ category: [category], page: 1, limit: 8 })
         )
         return {

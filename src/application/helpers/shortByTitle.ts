@@ -1,4 +1,5 @@
 import { Show } from '@/domain/entities/Show.js'
+import type { OverViewMovie } from '@/application/types/overView-Movie.js'
 
 export const sortByTitle = (items: Show[], queryTitle: string): Show[] => {
   const query = queryTitle.toLowerCase().trim()

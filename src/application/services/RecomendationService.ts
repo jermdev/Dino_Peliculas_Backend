@@ -1,6 +1,7 @@
 import type { ContentRepository } from '@/domain/ports/ContentRepository.js'
 import { RankingService } from '@/application/services/RankingService.js'
 import type { Show } from '@/domain/entities/Show.js'
+import type { OverViewMovie } from '@/application/types/overView-Movie.js'
 
 export class RecommendationService {
   constructor(
@@ -26,13 +27,13 @@ export class RecommendationService {
       .map((item) => item.content)
   }
 
-  async paraPerfil(preferredGenres: string[], limit: number): Promise<Show[]> {
+  async paraPerfil(preferredGenres: string[], limit: number): Promise<OverViewMovie[]> {
     if (preferredGenres.length === 0) {
-      const allContent = await this.contentRepository.findAll({ limit: 200, offset: 0 })
+      const allContent = await this.contentRepository.findOverViewMovies({ limit: 200, offset: 0 })
       return this.rankingService.sortByCategoryCount(allContent).slice(0, limit)
     }
 
-    const allContent = await this.contentRepository.findAll({ limit: 200, offset: 0 })
+    const allContent = await this.contentRepository.findOverViewMovies({ limit: 200, offset: 0 })
     return allContent
       .map((content) => ({
         content,
