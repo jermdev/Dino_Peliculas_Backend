@@ -1,4 +1,5 @@
 import Fastify from 'fastify'
+import cors from '@fastify/cors'
 import 'dotenv/config'
 import { createRouter } from '@/interfaces/router/router.js'
 
@@ -19,6 +20,14 @@ import { PrismaCategoryCatalogoRepository } from '@/infrastructure/persistence/P
 
 const fastify = Fastify({
   logger: true,
+})
+
+await fastify.register(cors, {
+    origin: [
+        'http://localhost:5173',              
+        'https://mi-dominio-en-produccion.com'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 })
 
 const movieRepository = new PrismaMovieRepository()
