@@ -4,6 +4,7 @@ import type { MovieRepository } from '@/domain/ports/MovieRepository.js'
 import { PathUrl } from '@/domain/value-objects/PathUrl.js'
 import { prisma } from '@/lib/prisma.js'
 import type { OverViewMovie } from '@/application/types/overView-Movie.js'
+import type { UpdateMovieContentDTO } from '@/application/types/update-covie-content.js'
 
 type MovieWithCategories = Prisma.MovieGetPayload<{
   include: { categories: true }
@@ -149,6 +150,44 @@ export class PrismaMovieRepository implements MovieRepository {
     }
 
     return new Movie(input)
+  }
+
+  async update(id: string, updateContent: UpdateMovieContentDTO): Promise<Movie | null> {
+    const { categories, ...scalarFields } = updateContent
+    
+    const cleanedFields = Object.fromEntries(
+      Object.entries(scalarFields).filter(([, value]) => value !== undefined)
+    ) as Prisma.MovieUpdateInput
+
+    try {
+      const record = await prisma.movie.update({
+        where: { id },
+        data: {
+          ...cleanedFields, // Prisma ignora automáticamente los campos undefined
+          ...(categories !== undefined && {
+            categories: {
+              deleteMany: {},
+              connectOrCreate: categories
+                .map((category) => category.trim())
+                .filter(Boolean)
+                .map((category) => ({
+                  where: { name: category },
+                  create: { name: category },
+                })),
+            },
+          }),
+        },
+      include: { categories: true },
+    })
+
+      return this.toDomain(record)
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      // El registro con ese id no existe
+        return null
+      }
+      throw error
+    }
   }
 
   private toOverViewMovie(record: MovieOverviewRecord): OverViewMovie {

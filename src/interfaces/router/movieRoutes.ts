@@ -1,6 +1,7 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { MovieController } from '@/interfaces/controllers/MovieController.js'
 import { ContentController } from '@/interfaces/controllers/ContentController.js'
+import { UpdateMovieController } from '@/interfaces/controllers/UpdateMovieController.js'
 
 export function registerMovieRoutes(fastify: FastifyInstance, controller: MovieController) {
   fastify.post('/api/movies', async (request: FastifyRequest, reply: FastifyReply) => {
@@ -23,5 +24,17 @@ export function getContentByIdRoutes(fastify: FastifyInstance, controller: Conte
   }
 
     reply.code(200).send(contentDetail)
+  })
+}
+
+export function updateMovie(fastify: FastifyInstance, controller: UpdateMovieController) {
+  fastify.patch('/api/movie/:id', async (request: FastifyRequest, reply: FastifyReply) => {
+    const contentUpdate = await controller.updateMovie(request);
+
+    if (!contentUpdate) {
+      return reply.code(400).send({ error: 'Failed to update movie' })
+    }
+
+    return reply.code(200).send(contentUpdate);
   })
 }

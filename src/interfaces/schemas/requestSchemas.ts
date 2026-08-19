@@ -46,3 +46,10 @@ export const CreateMovieSchema = z.object({
   originalAlphIdFromOriginalSource: z.string().min(1),
   subtitles: z.string().optional(),
 })
+
+export const UpdateMovieContentSchema = CreateMovieSchema.partial().refine(
+  (data) => Object.keys(data).length > 0,
+  { message: 'Debe proporcionarse al menos un campo para actualizar' }
+)
+
+export type UpdateMovieContentDTO = z.infer<typeof UpdateMovieContentSchema>
