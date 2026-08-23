@@ -27,7 +27,7 @@ const fastify = Fastify({
 await fastify.register(cors, {
     origin: [
         'http://localhost:5173',              
-        'https://mi-dominio-en-produccion.com'
+        'https://dinopeliculas.netlify.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 })
